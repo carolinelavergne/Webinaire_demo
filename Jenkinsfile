@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'newman run Demo.postman_collection.json -e ProdWebinaire.postman_environment.json -r junit,cli --reporter-junit-export newman.xml'
+                        sh 'newman run DemoData.postman_collection.json -e ProdWebinaire.postman_environment.json -r junit,cli --reporter-junit-export newman.xml -d recherche.csv'
 						currentBuild.result = 'SUCCESS'
                     } catch (Exception ex) {
                         currentBuild.result = 'FAILURE'
