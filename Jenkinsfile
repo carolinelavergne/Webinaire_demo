@@ -8,8 +8,18 @@ pipeline{
 			}
 		}
 		stage ("Test execution") {
-			steps {
-				sh 'newman run Demo.postman_collection.json -e ProdWebinaire.postman_environment.json'
+			steps {				
+				steps {​
+	                script {​
+	                    try {​
+	                        sh 'newman run Demo.postman_collection.json -e ProdWebinaire.postman_environment.json -r junit,cli --reporter-junit-export newman.xml'​
+	                        currentBuild.result = 'SUCCESS'​
+	                    } catch (Exception ex) {​
+	                        currentBuild.result = 'FAILURE'​
+	                    }​
+	                    junit 'newman.xml'​
+	                }​
+	            }​	
 			}
 		}
 	}
