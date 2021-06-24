@@ -15,5 +15,5 @@ pipeline {
 				sh 'newman run Demo.postman_collection.json -e ProdWebinaire.postman_environment.json'
 			}
 		}
-	}	 ->
+	}
 }
